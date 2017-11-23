@@ -6,7 +6,7 @@ var express = require('express'),
 Object.assign=require('object-assign')
 
 
-app.set('views', __dirname + '/views');
+//app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
 
