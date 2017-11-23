@@ -5,11 +5,13 @@ var express = require('express'),
     
 Object.assign=require('object-assign')
 
+
+app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
-    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
+    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || 'localhost',
     mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
     mongoURLLabel = "";
 
@@ -32,6 +34,7 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 
   }
 }
+
 var db = null,
     dbDetails = new Object();
 
@@ -89,8 +92,24 @@ app.get('/pagecount', function (req, res) {
   }
 });
 
-app.post('/index', function (req, res) {
-  res.render('index.html');
+app.post('/consultar', function (req, res) {
+  res.render('consultar.html');
+});
+
+app.post('/registrar', function (req, res) {
+  res.render('registrar.html');
+});
+
+app.post('/registro', function (req, res) {
+  res.send('SE REGISTRO EXITOSAMENTE');
+});
+
+app.post('/consulta', function (req, res) {
+  res.send('DIEGO DAVID BERMUDEZ RODRIGUEZ 74036752');
+});
+
+app.post('/consultaDNI', function (req, res) {
+  res.send('74036752 DIEGO DAVID BERMUDEZ RODRIGUEZ');
 });
 
 // error handling

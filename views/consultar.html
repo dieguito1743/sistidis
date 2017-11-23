@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Consultar</title>
+</head>
+<body>
+	<section>
+		<p>Consultar por Nombre y Apellido</p>
+		<form action="/consulta" method="post">
+			<label for="nombre">Nombre</label>
+			<input type="text" name="nombre" placeholder="nombre" id="nombre"><br>
+			<label for="apellido">Apellido</label>
+			<input type="text" name="apellido" placeholder="apellido" id="apellido"><br>
+			<input type="submit" name="consultar" value="consultar">
+		</form>
+	</section>
+	<section>
+		<p>Consultar por DNI</p>
+		<form action="/consultaDNI" method="post">
+			<label for="dni">DNI</label>
+			<input type="number" name="dni" placeholder="dni" id="dni"><br>
+			<input type="submit" name="consultar" value="consultar">
+		</form>
+	</section>
+</body>
+</html>
