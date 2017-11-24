@@ -1,15 +1,16 @@
 //  OpenShift sample Node application
 var express = require('express'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
     app     = express(),
     morgan  = require('morgan');
     
-Object.assign=require('object-assign')
+Object.assign=require('object-assign');
 
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'));
 app.set('views', __dirname + '/views');
-app.use(bodyParser.urlencoded({extendd: true}));
+app.use(bodyParser.jason());
+app.use(bodyParser.urlencoded({extended: true}));
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
@@ -80,7 +81,7 @@ app.get('/', function (req, res) {
   res.render('index.html');
 });
 
-/*
+
 app.get('/pagecount', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
@@ -95,7 +96,7 @@ app.get('/pagecount', function (req, res) {
     res.send('{ pageCount: -1 }');
   }
 });
-*/
+
 
 app.post('/consultar', function (req, res) {
   res.render('consultar.html');
