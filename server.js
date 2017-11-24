@@ -9,7 +9,7 @@ Object.assign=require('object-assign');
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'));
 app.set('views', __dirname + '/views');
-app.use(bodyParser.jason());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
