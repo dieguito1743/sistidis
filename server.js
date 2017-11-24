@@ -6,7 +6,9 @@ var express = require('express'),
 Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
-app.use(morgan('combined'))
+app.use(morgan('combined'));
+app.set('views', __dirname + '/views');
+app.use(bodyParser.urlencoded({extendd: true}));
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
@@ -58,6 +60,7 @@ var initDb = function(callback) {
 };
 
 app.get('/', function (req, res) {
+  /*
   // try to initialize the db on every request if it's not already
   // initialized.
   if (!db) {
@@ -72,9 +75,11 @@ app.get('/', function (req, res) {
     });
   } else {
     res.render('index.html', { pageCountMessage : null});
-  }
+  }*/
+  res.render('index.html');
 });
 
+/*
 app.get('/pagecount', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
@@ -89,19 +94,34 @@ app.get('/pagecount', function (req, res) {
     res.send('{ pageCount: -1 }');
   }
 });
+*/
 
 app.post('/consultar', function (req, res) {
-  app.set('views', __dirname + '/views');
   res.render('consultar.html');
 });
 
 app.post('/registrar', function (req, res) {
-  app.set('views', __dirname + '/views');
   res.render('registrar.html');
 });
 
 app.post('/registro', function (req, res) {
-  res.send('SE REGISTRO EXITOSAMENTE');
+  if (!db) {
+    initDb(function(err){});
+  }
+  if (db) {
+    var coll = db.collection('postulantes');
+    // Create a document with request IP and current time of request
+    coll.insert({
+      dni: req.body.dni,
+      nombre: req.body.nombre,
+      apellido: req.body.apellido,
+      correo: req.body.correo,
+      telefono: req.body.telefono,
+    });
+    res.send('Registrado correctamente')
+  } else {
+    res.send('Error al registrar');
+  }
 });
 
 app.post('/consulta', function (req, res) {

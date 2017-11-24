@@ -1,28 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>IDENTIFICACION DE POSTULANTE</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<meta charset="utf-8">
+	<title>Identificacion de postulante usando base de datos MongoDB en nube usando Openshift </title>
 </head>
 <body>
-	<header>IDENTIFICACION DE POSTULANTE USANDO BASE DE DATOS MONGODB CON OPENSHIFT</header>
+	<header>Identificacion de postulante usando base de datos MongoDB en nube usando Openshift </header>
 	<nav>
 		<UL>
-			<li><form  action="/registrar" method="post"><input type="submit" name="registrar" value="registrar"></form></li>
-			<li><form  action="/consultar" method="post"><input type="submit" name="consultar" value="consultar"></form></li>
+			<li><form  action="/registrar" method="post"><input type="submit" name="registrar" value="registrar" class="btn"></form></li>
+			<li><form  action="/consultar" method="post"><input type="submit" name="consultar" value="consultar" class="btn"></form></li>
 		</UL>
 	</nav>
 	<section>
-		<p>PAGINA UTILIZADA PARA GUARDARDATOS EN LA NOBE UTILIZANDO OPENSHIFT EN UNA BASE DE DATOS MONGO DB</p>
-		<P>PARA LUEGO PODER CONSULTARLAS DESDE CUALQUEIR SITIO</P>
-		<P>LO QUE GUARDA SON DATOS DE POSTULANTE</P>
-		<P>BAJO LA SIGUIENTE ESTRUCTURA</P>
-		<P>DNI</P>
-		<P>NOMBRE</P>
-		<P>APELLIDO</P>
-		<P>FECHA DE NACIMIENTO</P>
-		<P>DIRECCION</P>
-		<P>TELEFONO</P>
-		<P>CORREO</P>
+		<p>En este proyecto de Sistemas Distribuidos simularemos el registro de un postulante en una base de datos NoSQL</p>
+		<p>para ser exactos utilizaremos MongoDB</p>
+		<p>Estos datos podrán ser consultados, desde la pagina de consultas</p>
+		<p>La Coleccion de datos que guardaremos lo llamaremos Postulante</p>
+		<p>y el Documento o esquema a utilizar es el siguiente.</p>
+		<div class="datagrid">
+			<table>
+				<thead>
+					<tr>
+						<th>Atributo</th>
+						<th>Tipo</th>
+						<th>Descripción</th>
+						<th>Importancia</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>DNI</td>
+						<td>Numerico</td>
+						<td>Número de DNI del postulante</td>
+						<td>Alta - no puede ser nulo</td>
+					</tr>
+					<tr class="alt">
+						<td>Nombre</td>
+						<td>String</td>
+						<td>Guardara el nombre del postulante</td>
+						<td>Alta - no puede ser nulo</td>
+					</tr>
+					<tr>
+						<td>Apellido</td>
+						<td>String</td>
+						<td>Guardara el nombre del postulante</td>
+						<td>Alta - no puede ser nulo</td>
+					</tr>
+					<tr class="alt">
+						<td>Correo</td>
+						<td>Email</td>
+						<td>Guardara el correo del postulante</td>
+						<td>Puede ser nulo para registrar</td>
+					</tr>
+					<tr>
+						<td>Telefono</td>
+						<td>Numerico</td>
+						<td>Guardara el número telefonico del postulante</td>
+						<td>Puede ser nulo para registrar</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</section>
+	<footer>
+		Todos los derechos reservador
+	</footer>
 </body>
 </html>
