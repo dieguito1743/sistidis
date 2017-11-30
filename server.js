@@ -127,7 +127,17 @@ app.post('/registro', function (req, res) {
 });
 
 app.post('/consulta', function (req, res) {
-  res.send('DIEGO DAVID BERMUDEZ RODRIGUEZ 74036752');
+   if (!db) {
+    initDb(function(err){});
+  }
+  if (db) {
+    db.collection('postulantes').find({}).toArray(function(err, docs){
+      res.send(docs);
+      callback(docs);
+    });
+  } else {
+    res.send('{ pageCount: -1 }');
+  }
 });
 
 app.post('/consultaDNI', function (req, res) {
