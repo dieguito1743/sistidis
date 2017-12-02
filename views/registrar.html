@@ -40,23 +40,53 @@
 	.form .gender {
 	  width:410px;
 	  }
-	.form input.buttom{ background: #4b8df9; display: inline-block; padding: 5px 10px 6px; color: #fbf7f7; text-decoration: none; font-weight: bold; line-height: 1; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; -moz-box-shadow: 0 1px 3px #999; -webkit-box-shadow: 0 1px 3px #999; box-shadow: 0 1px 3px #999; text-shadow: 0 -1px 1px #222; border: none; position: relative; cursor: pointer; font-size: 14px; font-family:Verdana, Geneva, sans-serif;}
-	.form input.buttom:hover    { background-color: #2a78f6; }
+	.form input.buttom{
+    width: 250px;
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    -webkit-border-radius: 21;
+    -moz-border-radius: 21;
+    border-radius: 21px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 2px 40px 3px 40px;
+    text-decoration: none;
+  }
+	.form input.buttom:hover    { background: #82cfff;
+      background-image: -webkit-linear-gradient(top, #82cfff, #2baaff);
+      background-image: -moz-linear-gradient(top, #82cfff, #2baaff);
+      background-image: -ms-linear-gradient(top, #82cfff, #2baaff);
+      background-image: -o-linear-gradient(top, #82cfff, #2baaff);
+      background-image: linear-gradient(to bottom, #82cfff, #2baaff);
+      text-decoration: none; }
+
+  .wrapper {
+    width:90%; /* Establecemos que el ancho sera del 90% */
+    max-width:1000px; /* Aqui le decimos que el ancho máximo sera de 1000px */
+    margin:auto; /* Centramos los elementos */
+    overflow:hidden; /* Eliminamos errores de float */
+  }
 	</style>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 </head>
 <body>
-  <div  class="form">
+  <div  class="form wrapper">
     <form id="contactform" action="/registro" method="POST">
-      <p class="contact"><label for="dni">DNI</label></p>
+      <p class="contact wrapper"><label for="dni">DNI</label></p>
       <input id="dni" name="dni" placeholder="dni" required="" tabindex="1" type="text">
-      <p class="contact"><label for="name">Nombre</label></p>
+      <p class="contact wrapper"><label for="name">Nombre</label></p>
       <input id="name" name="name" placeholder="Nombre" required="" tabindex="2" type="text">
-      <p class="contact"><label for="lastname">Apellido Paterno</label></p>
+      <p class="contact wrapper"><label for="lastname">Apellido Paterno</label></p>
       <input id="lastname" name="lastname" placeholder="Apellido Paterno" required="" tabindex="3" type="text">
-      <p class="contact"><label for="lastname2">Apellido Materno</label></p>
+      <p class="contact wrapper"><label for="lastname2">Apellido Materno</label></p>
       <input id="lastname2" name="lastname2" placeholder="Apellido Materno" required="" tabindex="4" type="text">
-      <p class="contact"><label for="email">Email</label></p>
+      <p class="contact wrapper"><label for="email">Email</label></p>
       <input id="email" name="email" placeholder="example@domain.com" required="" type="mail">
       <br>
       <label>Fecha de Nacimiento</label>
@@ -64,7 +94,7 @@
       <br>
       <fieldset>
         <label>Mes</label>
-        <label class="month">
+        <label class="month wrapper">
           <select class="select-style" name="BirthMonth">
             <option value="01">Enero</option>
             <option value="02">Febrero</option>
@@ -80,19 +110,19 @@
             <option value="12" >Diciembre</option>
           </label>
         </select>   
-        <label>Día <input class="birthday" maxlength="2" name="BirthDay"  placeholder="Día" required=""></label>
-        <label>Año <input class="birthyear" maxlength="4" name="BirthYear" placeholder="Año" required=""></label>
+        <label>Día <input class="birthday wrapper" maxlength="2" name="BirthDay"  placeholder="Día" required=""></label>
+        <label>Año <input class="birthyear wrapper" maxlength="4" name="BirthYear" placeholder="Año" required=""></label>
       </fieldset>
-      <p class="contact"><label for="gender">Genero</label></p>
-      <select class="select-style gender" name="gender">
+      <p class="contact wrapper"><label for="gender">Genero</label></p>
+      <select class="select-style gender wrapper" name="gender">
         <option value="m">Masculino</option>
         <option value="f">Femenino</option>
       </select>
       <br>
       <br>
-      <p class="contact"><label for="phone">Telefono</label></p>
+      <p class="contact wrapper"><label for="phone">Telefono</label></p>
       <input id="phone" name="phone" placeholder="Celular o Fijo" required="" type="text"> <br>
-      <input class="buttom" name="submit" id="submit" tabindex="5" value="Registrar" type="submit">   
+      <input class="buttom wrapper" name="submit" id="submit" tabindex="5" value="Registrar" type="submit">   
     </form>
   </div>
 </body>
