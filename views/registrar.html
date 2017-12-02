@@ -1,23 +1,99 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>REGISTRAR ALUMNO</title>
+	<title>Registrar Alumno</title>
+	<style>
+			.form{
+	    background:#f1f1f1; width:470px; margin:0 auto; padding-left:50px; padding-top:20px;
+	}
+	.form fieldset{border:0px; padding:0px; margin:0px;}
+	.form p.contact { font-size: 12px; margin:0px 0px 10px 0;line-height: 14px; font-family:Arial, Helvetica;}
+	.form input[type="text"] { width: 400px; }
+	.form input[type="email"] { width: 400px; }
+	.forminput[type="password"] { width: 400px; }
+	.form input.birthday{width:60px;}
+	.form input.birthyear{width:120px;}
+	.form label { color: #000; font-weight:bold;font-size: 12px;font-family:Arial, Helvetica; }
+	.form label.month {width: 135px;}
+	.form input, textarea { background-color: rgba(255, 255, 255, 0.4); border: 1px solid rgba(122, 192, 0, 0.15); padding: 7px; font-family: Keffeesatz, Arial; color: #4b4b4b; font-size: 14px; -webkit-border-radius: 5px; margin-bottom: 15px; margin-top: -10px; }
+	.form input:focus, textarea:focus { border: 1px solid #ff5400; background-color: rgba(255, 255, 255, 1); }
+	.form .select-style {
+	  -webkit-appearance: button;
+	  -webkit-border-radius: 2px;
+	  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+	  -webkit-padding-end: 20px;
+	  -webkit-padding-start: 2px;
+	  -webkit-user-select: none;
+	  background-image: url(images/select-arrow.png),
+	    -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+	  background-position: center right;
+	  background-repeat: no-repeat;
+	  border: 0px solid #FFF;
+	  color: #555;
+	  font-size: inherit;
+	  margin: 0;
+	  overflow: hidden;
+	  padding-top: 5px;
+	  padding-bottom: 5px;
+	  text-overflow: ellipsis;
+	  white-space: nowrap;}
+	.form .gender {
+	  width:410px;
+	  }
+	.form input.buttom{ background: #4b8df9; display: inline-block; padding: 5px 10px 6px; color: #fbf7f7; text-decoration: none; font-weight: bold; line-height: 1; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; -moz-box-shadow: 0 1px 3px #999; -webkit-box-shadow: 0 1px 3px #999; box-shadow: 0 1px 3px #999; text-shadow: 0 -1px 1px #222; border: none; position: relative; cursor: pointer; font-size: 14px; font-family:Verdana, Geneva, sans-serif;}
+	.form input.buttom:hover    { background-color: #2a78f6; }
+	</style>
+  <meta charset="utf-8">
 </head>
 <body>
-	<form action="/registro" method="post">
-		<label for="dni">DNI</label>
-		<input type="number" name="dni" placeholder="dni" id="dni"><br>
-		<label for="nombre">Nombre</label>
-		<input type="text" name="nombre" placeholder="nombre" id="nombre"><br>
-		<label for="apellido">Apellido</label>
-		<input type="text" name="apellido" placeholder="apellido" id="apellido"><br>
-		<label for="correo">Correo</label>
-		<input type="email" name="correo" placeholder="correo" id="correo"><br>
-		<label for="telefono">Telefono</label>
-		<input type="text" name="telefono" placeholder="telefono" id="telefono"><br>
-		<label for="date-b">Fecha Nacimiento</label>
-		<input type="date" name="date-b" placeholder="date-b" id="date-b"><br>
-		<input type="submit" name="registrar" value="registrar">
-	</form>
+  <div  class="form">
+    <form id="contactform" action="/registro" method="POST">
+      <p class="contact"><label for="dni">DNI</label></p>
+      <input id="dni" name="dni" placeholder="dni" required="" tabindex="1" type="text">
+      <p class="contact"><label for="name">Nombre</label></p>
+      <input id="name" name="name" placeholder="Nombre" required="" tabindex="2" type="text">
+      <p class="contact"><label for="lastname">Apellido Paterno</label></p>
+      <input id="lastname" name="lastname" placeholder="Apellido Paterno" required="" tabindex="3" type="text">
+      <p class="contact"><label for="lastname2">Apellido Materno</label></p>
+      <input id="lastname2" name="lastname2" placeholder="Apellido Materno" required="" tabindex="4" type="text">
+      <p class="contact"><label for="email">Email</label></p>
+      <input id="email" name="email" placeholder="example@domain.com" required="" type="mail">
+      <br>
+      <label>Fecha de Nacimiento</label>
+      <br>
+      <br>
+      <fieldset>
+        <label>Mes</label>
+        <label class="month">
+          <select class="select-style" name="BirthMonth">
+            <option value="01">Enero</option>
+            <option value="02">Febrero</option>
+            <option value="03" >Marzo</option>
+            <option value="04">Abril</option>
+            <option value="05">Mayo</option>
+            <option value="06">Junio</option>
+            <option value="07">Julio</option>
+            <option value="08">Agosto</option>
+            <option value="09">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12" >Diciembre</option>
+          </label>
+        </select>   
+        <label>Día <input class="birthday" maxlength="2" name="BirthDay"  placeholder="Día" required=""></label>
+        <label>Año <input class="birthyear" maxlength="4" name="BirthYear" placeholder="Año" required=""></label>
+      </fieldset>
+      <p class="contact"><label for="gender">Genero</label></p>
+      <select class="select-style gender" name="gender">
+        <option value="m">Masculino</option>
+        <option value="f">Femenino</option>
+      </select>
+      <br>
+      <br>
+      <p class="contact"><label for="phone">Telefono</label></p>
+      <input id="phone" name="phone" placeholder="Celular o Fijo" required="" type="text"> <br>
+      <input class="buttom" name="submit" id="submit" tabindex="5" value="Registrar" type="submit">   
+    </form>
+  </div>
 </body>
 </html>

@@ -115,10 +115,15 @@ app.post('/registro', function (req, res) {
     // Create a document with request IP and current time of request
     coll.insert({
       dni: req.body.dni,
-      nombre: req.body.nombre,
-      apellido: req.body.apellido,
-      correo: req.body.correo,
-      telefono: req.body.telefono,
+      nombre: req.body.name,
+      apellido_paterno: req.body.lastname,
+      apellido_materno: req.body.lastname2,
+      correo: req.body.email,
+      mes_nacimiento: req.body.BirthMonth,
+      dia_nacimiento: req.body.BirthDay,
+      año_nacimiento: req.body.BirthYear,
+      genero: req.body.gender,
+      telefono: req.body.phone,
     });
     res.send('Registrado correctamente')
   } else {
