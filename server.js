@@ -97,22 +97,34 @@ app.get('/pagecount', function (req, res) {
   }
 });
 
+app.get('/eliminar', function(req, res){
+  if (!db) {
+    initDb(function(err){});
+  }
+  if (db) {
+    var collection = db.db.collection('postulantes');
+    collection.remove();
+  } else {
+    res.send('{ pageCount: -1 }');
+  }
+});
 
+/*Menu de Navefación*/
 app.post('/consultar', function (req, res) {
   res.render('consultar.html');
 });
-
 app.post('/registrar', function (req, res) {
   res.render('registrar.html');
 });
+/*Fin de Menu de Navegación*/
 
+//Registro
 app.post('/registro', function (req, res) {
   if (!db) {
     initDb(function(err){});
   }
   if (db) {
     var coll = db.collection('postulantes');
-    // Create a document with request IP and current time of request
     coll.insert({
       dni: req.body.dni,
       nombre: req.body.name,
@@ -123,6 +135,7 @@ app.post('/registro', function (req, res) {
       dia_nacimiento: req.body.BirthDay,
       año_nacimiento: req.body.BirthYear,
       genero: req.body.gender,
+      carrera: req.body.carrera,
       telefono: req.body.phone,
     });
     res.send('Registrado correctamente')
@@ -131,6 +144,7 @@ app.post('/registro', function (req, res) {
   }
 });
 
+//Consulta
 app.post('/consulta', function (req, res) {
    if (!db) {
     initDb(function(err){});
@@ -145,6 +159,7 @@ app.post('/consulta', function (req, res) {
   }
 });
 
+//Consulta de Prueba
 app.post('/consultaDNI', function (req, res) {
   res.send('74036752 DIEGO DAVID BERMUDEZ RODRIGUEZ');
 });
@@ -154,12 +169,12 @@ app.use(function(err, req, res, next){
   console.error(err.stack);
   res.status(500).send('Something bad happened!');
 });
-
 initDb(function(err){
   console.log('Error connecting to Mongo. Message:\n'+err);
 });
+// fin de error handling
 
 app.listen(port, ip);
-console.log('Server running on http://%s:%s', ip, port);
 
+console.log('Server running on http://%s:%s', ip, port);
 module.exports = app ;
