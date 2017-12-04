@@ -97,18 +97,6 @@ app.get('/pagecount', function (req, res) {
   }
 });
 
-app.get('/eliminar', function(req, res){
-  if (!db) {
-    initDb(function(err){});
-  }
-  if (db) {
-    var collection = db.db.collection('postulantes');
-    collection.remove();
-  } else {
-    res.send('{ pageCount: -1 }');
-  }
-});
-
 /*Menu de Navefación*/
 app.post('/consultar', function (req, res) {
   res.render('consultar.html');
