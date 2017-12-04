@@ -96,7 +96,7 @@ app.get('/pagecount', function (req, res) {
     res.send('{ pageCount: -1 }');
   }
 });
-/*
+
 app.get('/eliminar', function(req, res){
   if (!db) {
     initDb(function(err){});
@@ -108,7 +108,7 @@ app.get('/eliminar', function(req, res){
     res.send('{ pageCount: -1 }');
   }
 });
-*/
+
 /*Menu de Navefación*/
 app.post('/consultar', function (req, res) {
   res.render('consultar.html');
