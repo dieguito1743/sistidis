@@ -30,7 +30,6 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
     if (mongoUser && mongoPassword) {
       mongoURL += mongoUser + ':' + mongoPassword + '@';
     }
-    // Provide UI label that excludes user id and pw
     mongoURLLabel += mongoHost + ':' + mongoPort + '/' + mongoDatabase;
     mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
 
@@ -62,29 +61,11 @@ var initDb = function(callback) {
 };
 
 app.get('/', function (req, res) {
-  /*
-  // try to initialize the db on every request if it's not already
-  // initialized.
-  if (!db) {
-    initDb(function(err){});
-  }
-  if (db) {
-    var col = db.collection('counts');
-    // Create a document with request IP and current time of request
-    col.insert({ip: req.ip, date: Date.now()});
-    col.count(function(err, count){
-      res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails });
-    });
-  } else {
-    res.render('index.html', { pageCountMessage : null});
-  }*/
   res.render('index.html');
 });
 
 
 app.get('/pagecount', function (req, res) {
-  // try to initialize the db on every request if it's not already
-  // initialized.
   if (!db) {
     initDb(function(err){});
   }
@@ -92,6 +73,18 @@ app.get('/pagecount', function (req, res) {
     db.collection('counts').count(function(err, count ){
       res.send('{ pageCount: ' + count + '}');
     });
+  } else {
+    res.send('{ pageCount: -1 }');
+  }
+});
+
+app.get('/eliminar', function(req, res){
+  if (!db) {
+    initDb(function(err){});
+  }
+  if (db) {
+    var collection = db.db.collection('postulantes');
+    collection.remove();
   } else {
     res.send('{ pageCount: -1 }');
   }
