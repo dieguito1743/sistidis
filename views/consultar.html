@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Consultar</title>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+		function genera_tabla() {
+			// Obtener la referencia del elemento body
+			var body = document.getElementsByTagName("section")[0];
+
+			// Crea un elemento <table> y un elemento <tbody>
+			var tabla   = document.createElement("table");
+			var tblBody = document.createElement("tbody");
+
+			// Crea las celdas
+			for (var i = 0; i < 2; i++) {
+					// Crea las hileras de la tabla
+					var hilera = document.createElement("tr");
+
+				for (var j = 0; j < 2; j++) {
+					var celda = document.createElement("td");
+					var textoCelda = document.createTextNode("celda en la hilera "+i+", columna "+j);
+					celda.appendChild(textoCelda);
+					hilera.appendChild(celda);
+				}
+
+				// agrega la hilera al final de la tabla (al final del elemento tblbody)
+				tblBody.appendChild(hilera);
+			}
+
+			// posiciona el <tbody> debajo del elemento <table>
+			tabla.appendChild(tblBody);
+			// appends <table> into <body>
+			body.appendChild(tabla);
+			// modifica el atributo "border" de la tabla y lo fija a "2";
+			tabla.setAttribute("border", "0");
+			tabla.setAttribute("width", "90%");
+			tabla.setAttribute("max-width", "480");
+			tabla.setAttribute("margin", "auto");
+			tabla.setAttribute("overflow", "hidden");
+
+		}
+	</script>
+	<style type="text/css">
+		.form{
+		    background:#f1f1f1; width:470px; margin:0 auto; padding-left:50px; padding-top:20px;
+		}
+		.form fieldset{border:0px; padding:0px; margin:0px;}
+		.form p.contact { font-size: 12px; margin:0px 0px 10px 0;line-height: 14px; font-family:Arial, Helvetica;}
+		.form input[type="text"] { width: 400px; }
+		.form input[type="email"] { width: 400px; }
+		.forminput[type="password"] { width: 400px; }
+		.form input.birthday{width:60px;}
+		.form input.birthyear{width:120px;}
+		.form label { color: #000; font-weight:bold;font-size: 12px;font-family:Arial, Helvetica; }
+		.form label.month {width: 135px;}
+		.form input, textarea { background-color: rgba(255, 255, 255, 0.4); border: 1px solid rgba(122, 192, 0, 0.15); padding: 7px; font-family: Keffeesatz, Arial; color: #4b4b4b; font-size: 14px; -webkit-border-radius: 5px; margin-bottom: 15px; margin-top: -10px; }
+		.form input:focus, textarea:focus { border: 1px solid #ff5400; background-color: rgba(255, 255, 255, 1); }
+		.form .select-style {
+		  -webkit-appearance: button;
+		  -webkit-border-radius: 2px;
+		  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+		  -webkit-padding-end: 20px;
+		  -webkit-padding-start: 2px;
+		  -webkit-user-select: none;
+		  background-image: url(images/select-arrow.png),
+		    -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+		  background-position: center right;
+		  background-repeat: no-repeat;
+		  border: 0px solid #FFF;
+		  color: #555;
+		  font-size: inherit;
+		  margin: 0;
+		  overflow: hidden;
+		  padding-top: 5px;
+		  padding-bottom: 5px;
+		  text-overflow: ellipsis;
+		  white-space: nowrap;}
+		.form .gender {
+		  width:410px;
+		  }
+		.form input.buttom{
+	    width: 400px;
+	    background: #3498db;
+	    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+	    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+	    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+	    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+	    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+	    -webkit-border-radius: 21;
+	    -moz-border-radius: 21;
+	    border-radius: 21px;
+	    font-family: Arial;
+	    color: #ffffff;
+	    font-size: 15px;
+	    padding: 2px 40px 3px 40px;
+	    text-decoration: none;
+	  }
+		.form input.buttom:hover    { background: #82cfff;
+	      background-image: -webkit-linear-gradient(top, #82cfff, #2baaff);
+	      background-image: -moz-linear-gradient(top, #82cfff, #2baaff);
+	      background-image: -ms-linear-gradient(top, #82cfff, #2baaff);
+	      background-image: -o-linear-gradient(top, #82cfff, #2baaff);
+	      background-image: linear-gradient(to bottom, #82cfff, #2baaff);
+	      text-decoration: none; }
+
+	  .wrapper {
+	    width:90%; /* Establecemos que el ancho sera del 90% */
+	    max-width:490px; /* Aqui le decimos que el ancho máximo sera de 1000px */
+	    margin:auto; /* Centramos los elementos */
+	    overflow:hidden; /* Eliminamos errores de float */
+	  }
+	</style>
+</head>
+<body>
+	<div  class="form wrapper">
+		<form id="contactform" action="/registro" method="POST">
+			<p class="contact"><label for="dni">DNI</label></p>
+			<input id="dni" name="dni" placeholder="D.N.I." required="" tabindex="1" type="text">
+			<br>
+			<input class="buttom" name="submit" id="submit" tabindex="2" value="Buscar" type="submit">   
+		</form>
+	</div>
+
+	<section class="wrapper">
+		<p>Consultar por DNI</p>
+		<form action="/consultaDNI" method="post">
+			<label for="dni">DNI</label>
+			<input type="number" name="dni" placeholder="dni" id="dni"><br>
+			<input type="submit" name="consultar" value="consultar">
+		</form>
+		<input type="button" value="Genera una tabla" onclick="genera_tabla()">
+	</section>
+</body>
+</html>
