@@ -131,9 +131,10 @@ app.post('/consulta', function (req, res) {
     initDb(function(err){});
   }
   if (db) {
-    db.collection('postulantes').find({},{fields:{dni: req.body.dni}}).toArray(function(err, docs){
-      res.send(docs);
-      callback(docs);
+    db.collection('postulantes').findOne({dni: req.body.dni}).toArray(function(err, docs){
+      var resultado = docs.dni + " " + docs.nombre + " " + docs. apellido_paterno + " " + docs.apellido_materno + " " + docs.carrera;
+      res.send(resultado);
+      callback(resultado);
     });
   } else {
     res.send('{ pageCount: -1 }');
