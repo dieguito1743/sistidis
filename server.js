@@ -139,7 +139,7 @@ app.post('/consulta', function (req, res) {
     });
     */
     db.collection('postulantes').findOne({dni: req.body.dni}, {fields:{dni: req.body.dni}}, function(err, doc) {
-      var resultado = docs.dni + " " + docs.nombre + " " + docs. apellido_paterno + " " + docs.apellido_materno + " " + docs.carrera;
+      var resultado = docs.dni + " " + docs.nombre + " " + docs.apellido_paterno + " " + docs.apellido_materno + " " + docs.carrera;
       res.send(resultado);
       //callback(resultado);
     });
