@@ -114,7 +114,7 @@
 </head>
 <body>
 	<div  class="form wrapper">
-		<form id="contactform" action="/registro" method="POST">
+		<form id="contactform" action="/consulta" method="POST">
 			<p class="contact"><label for="dni">DNI</label></p>
 			<input id="dni" name="dni" placeholder="D.N.I." required="" tabindex="1" type="text">
 			<br>
@@ -123,12 +123,7 @@
 	</div>
 
 	<section class="wrapper">
-		<p>Consultar por DNI</p>
-		<form action="/consultaDNI" method="post">
-			<label for="dni">DNI</label>
-			<input type="number" name="dni" placeholder="dni" id="dni"><br>
-			<input type="submit" name="consultar" value="consultar">
-		</form>
+		<<p>Visualización de información</p>
 		<input type="button" value="Genera una tabla" onclick="genera_tabla()">
 	</section>
 </body>
