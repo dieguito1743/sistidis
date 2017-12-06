@@ -5,21 +5,45 @@
 	<meta charset="utf-8">
 	<script type="text/javascript">
 		function genera_tabla() {
-			// Obtener la referencia del elemento body
+
+
+			var tabla = document.getElementsByTagName("tbody")[0];	
+
+			if (!tabla){
+				alert("Buscando");
+				// Obtener la referencia del elemento body
 			var body = document.getElementsByTagName("section")[0];
 
 			// Crea un elemento <table> y un elemento <tbody>
 			var tabla   = document.createElement("table");
 			var tblBody = document.createElement("tbody");
 
+
+
 			// Crea las celdas
-			for (var i = 0; i < 2; i++) {
+			for (var i = 0; i < 4; i++) {
 					// Crea las hileras de la tabla
 					var hilera = document.createElement("tr");
 
-				for (var j = 0; j < 2; j++) {
+				for (var j = 0; j < 4; j++) {
 					var celda = document.createElement("td");
-					var textoCelda = document.createTextNode("celda en la hilera "+i+", columna "+j);
+					if(i==0){
+						if(j==0){
+							var textoCelda = document.createTextNode("Nombre");	
+						}
+						if(j==1){
+							var textoCelda = document.createTextNode("Carrera");	
+						}
+						if(j==2){
+							var textoCelda = document.createTextNode("Sexo");	
+						}
+						if(j==3){
+							var textoCelda = document.createTextNode("Fecha Nacimiento");	
+						}
+					}
+					else{
+						var textoCelda = document.createTextNode("Dato " + i  + " " + j);	
+					}
 					celda.appendChild(textoCelda);
 					hilera.appendChild(celda);
 				}
@@ -38,6 +62,13 @@
 			tabla.setAttribute("max-width", "480");
 			tabla.setAttribute("margin", "auto");
 			tabla.setAttribute("overflow", "hidden");
+			} else {
+				padre = tabla.parentNode;
+				padre.removeChild(tabla);
+				genera_tabla();
+			}
+
+			
 
 		}
 	</script>
@@ -118,12 +149,12 @@
 			<p class="contact"><label for="dni">DNI</label></p>
 			<input id="dni" name="dni" placeholder="D.N.I." required="" tabindex="1" type="text">
 			<br>
-			<input class="buttom" name="submit" id="submit" tabindex="2" value="Buscar" type="submit">   
+			<input class="buttom" name="submit" id="submit" tabindex="2" value="Buscar" type="submit" onclick="genera_tabla()">   
 		</form>
 	</div>
 
 	<section class="wrapper">
-		<<p>Visualización de información</p>
+		<p>Visualización de información</p>
 		<input type="button" value="Genera una tabla" onclick="genera_tabla()">
 	</section>
 </body>

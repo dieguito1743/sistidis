@@ -140,11 +140,6 @@ app.post('/consulta', function (req, res) {
   }
 });
 
-//Consulta de Prueba
-app.post('/consultaDNI', function (req, res) {
-  res.send('74036752 DIEGO DAVID BERMUDEZ RODRIGUEZ');
-});
-
 // error handling
 app.use(function(err, req, res, next){
   console.error(err.stack);
